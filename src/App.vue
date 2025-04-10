@@ -61,7 +61,49 @@ export default {
 		],
     }),
     methods: {
-        handleButtonClick(value) {
+		handleButtonClick(value) {
+			switch (value) {
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+					// llamar a funcion para numeros
+					console.log('numero'+ value);
+					break;
+				case '+':
+				case '-':
+				case '*':
+				case '/':
+				case '%':
+					// llamar a funcion para operadores
+					console.log('operador'+ value);
+					break;
+				case '=':
+					// llamar a funcion para igual
+					console.log('igual'+ value);
+					break;
+				case 'AC':
+					// llamar a funcion para AC
+					console.log('AC'+ value);
+					break;
+				case 'C':
+					// llamar a funcion para C
+					console.log('C'+ value);
+					break;
+				default:
+					this.currentInput = "Error"
+
+			}
+		},
+
+
+        fff(value) {
 			if(Number(value) >= 0 && Number(value) <= 9 || value === '.') {
                 this.memory += this.memoryOp + value;
                 this.currentInput += value;
