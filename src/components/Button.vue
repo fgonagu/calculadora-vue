@@ -1,15 +1,13 @@
 <template>
-  <button :class="type" @click="handleClick" >{{buttons}}</button>
+  <button :class="type" @click="handleClick" >
+	  {{	buttons	}}
+  </button>
 </template>
 
 
 <script>
 export default {
   props: {
-    name:  {
-      type: String,
-      default: "prueba"
-    },
     buttons: {
       type: String,
       default: "*",
@@ -18,12 +16,6 @@ export default {
     type: {
       type: String,
       default: 'number',
-      validator: value => ['number', 'operator', 'functionAC', 'functionC', 'equals'].includes(value)
-    }
-  },
-  methods: {
-    handleClick() {
-      this.$emit("button-click", this.buttons);
     }
   }
 }

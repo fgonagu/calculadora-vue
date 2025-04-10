@@ -1,30 +1,24 @@
 <template>
     <div class="body">
         <div class="container">
-            <h1>Calculadora</h1>
-
-            <div>
-                <Display :name="currentInput"/>
-            </div>
-
+            <h1>
+				Calculadora
+			</h1>
+			<Display :name="currentInput"/>
             <span>
-      Mathematical
-    </span>
-
-            <div class="keyboard">
-                <Button
-                    v-for="(button, index) in buttonList"
-                    :key="index"
-                    :buttons="button.value"
-                    :type="button.type"
-                    @button-click="handleButtonClick"
-                />
-
-            </div>
-
+      			Mathematical
+    		</span>
+			<div class="keyboard">
+				<Button
+					v-for="(button, index) in buttonList"
+					:key="index"
+					:buttons="button.value"
+					:type="button.type"
+					@click="handleButtonClick(button.value)"
+				/>
+			</div>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -37,65 +31,46 @@ export default {
         Display,
         Button,
     },
-    data() {
-        return {
-            op: "",
-            result: "",
-            memory: "",
-            memoryOp: "",
-            currentInput: "0",
-            lastOperator: {
-                type: Boolean,
-                default: false,
-            },
-            buttonList: [
-                {value: '7', type: 'number'},
-                {value: '8', type: 'number'},
-                {value: '9', type: 'number'},
-                {value: '/', type: 'operator'},
-                {value: '%', type: 'operator'},
-                {value: '4', type: 'number'},
-                {value: '5', type: 'number'},
-                {value: '6', type: 'number'},
-                {value: '*', type: 'operator'},
-                {value: '-', type: 'operator'},
-                {value: '1', type: 'number'},
-                {value: '2', type: 'number'},
-                {value: '3', type: 'number'},
-                {value: '+', type: 'operator'},
-                {value: '=', type: 'equals'},
-                {value: '0', type: 'number'},
-                {value: '.', type: 'number'},
-                {value: 'AC', type: 'functionAC'},
-                {value: 'C', type: 'functionC'},
-            ],
-        }
-    },
+    data: () => ({
+		op: "",
+		result: "",
+		memory: "",
+		memoryOp: "",
+		currentInput: "",
+		lastOperator: false,
+		buttonList: [
+			{value: '7', type: 'number'},
+			{value: '8', type: 'number'},
+			{value: '9', type: 'number'},
+			{value: '/', type: 'operator'},
+			{value: '%', type: 'operator'},
+			{value: '4', type: 'number'},
+			{value: '5', type: 'number'},
+			{value: '6', type: 'number'},
+			{value: '*', type: 'operator'},
+			{value: '-', type: 'operator'},
+			{value: '1', type: 'number'},
+			{value: '2', type: 'number'},
+			{value: '3', type: 'number'},
+			{value: '+', type: 'operator'},
+			{value: '=', type: 'equals'},
+			{value: '0', type: 'number'},
+			{value: '.', type: 'number'},
+			{value: 'AC', type: 'functionAC'},
+			{value: 'C', type: 'functionC'},
+		],
+    }),
     methods: {
         handleButtonClick(value) {
-            if(value==='1' || value==='2' || value==='3' || value==='4' || value==='5' || value==='6' || value==='7' || value==='8' || value==='9' || value==='0') {
+			if(Number(value) >= 0 && Number(value) <= 9 || value === '.') {
                 this.memory += this.memoryOp + value;
-                //this.currentInput = this.memory;
-
                 this.currentInput += value;
-
-
-
-                console.log("valor clickeado: " + value);
-                console.log("memoria: " + this.memory);
             }
 
-            if(value==='+' || value==='-' || value==='*' || value==='/' || value==='%' || value === '.') {
+            if(value==='+' || value==='-' || value==='*' || value==='/' || value==='%') {
 
                 this.op = value;
                 this.memoryOp = this.op;
-                console.log("Le he dado a un operador, value: " + value);
-                console.log("Le he dado a un operador, currentInput: " + this.currentInput);
-                console.log("Le he dado a un operador, this.op: " + this.op);
-                console.log("Memoria: " + this.memory);
-                console.log("MemoriaOperador: " + this.memoryOp);
-
-
                 //this.memory +=  this.memoryOp;
                 this.currentInput = this.op;
 
