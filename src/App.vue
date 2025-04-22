@@ -32,125 +32,122 @@ export default {
         Button,
     },
     data: () => ({
-		op: "",
-		result: "",
-		memory: "",
-		memoryOp: "",
-		currentInput: "",
-		lastOperator: false,
-		buttonList: [
-			{value: '7', type: 'number'},
-			{value: '8', type: 'number'},
-			{value: '9', type: 'number'},
-			{value: '/', type: 'operator'},
-			{value: '%', type: 'operator'},
-			{value: '4', type: 'number'},
-			{value: '5', type: 'number'},
-			{value: '6', type: 'number'},
-			{value: '*', type: 'operator'},
-			{value: '-', type: 'operator'},
-			{value: '1', type: 'number'},
-			{value: '2', type: 'number'},
-			{value: '3', type: 'number'},
-			{value: '+', type: 'operator'},
-			{value: '=', type: 'equals'},
-			{value: '0', type: 'number'},
-			{value: '.', type: 'number'},
-			{value: 'AC', type: 'functionAC'},
-			{value: 'C', type: 'functionC'},
-		],
+        op: "",
+        result: "",
+        memory: "",
+        memoryOp: "",
+        currentInput: "",
+        lastOperator: false,
+        buttonList: [
+            {value: '7', type: 'number'},
+            {value: '8', type: 'number'},
+            {value: '9', type: 'number'},
+            {value: '/', type: 'operator'},
+            {value: '%', type: 'operator'},
+            {value: '4', type: 'number'},
+            {value: '5', type: 'number'},
+            {value: '6', type: 'number'},
+            {value: '*', type: 'operator'},
+            {value: '-', type: 'operator'},
+            {value: '1', type: 'number'},
+            {value: '2', type: 'number'},
+            {value: '3', type: 'number'},
+            {value: '+', type: 'operator'},
+            {value: '=', type: 'equals'},
+            {value: '0', type: 'number'},
+            {value: '.', type: 'number'},
+            {value: 'AC', type: 'functionAC'},
+            {value: 'C', type: 'functionC'},
+        ],
     }),
     methods: {
-		handleButtonClick(value) {
-			switch (value) {
-				case '0':
-				case '1':
-				case '2':
-				case '3':
-				case '4':
-				case '5':
-				case '6':
-				case '7':
-				case '8':
-				case '9':
-					// llamar a funcion para numeros
-					console.log('numero'+ value);
-					break;
-				case '+':
-				case '-':
-				case '*':
-				case '/':
-				case '%':
-					// llamar a funcion para operadores
-					console.log('operador'+ value);
-					break;
-				case '=':
-					// llamar a funcion para igual
-					console.log('igual'+ value);
-					break;
-				case 'AC':
-					// llamar a funcion para AC
-					console.log('AC'+ value);
-					break;
-				case 'C':
-					// llamar a funcion para C
-					console.log('C'+ value);
-					break;
-				default:
-					this.currentInput = "Error"
+        handleButtonClick(value) {
+            switch (value) {
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    // llamar a funcion para numeros
+                    this.numbers(value);
+                    break;
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                case '%':
+                    // llamar a funcion para operadores
+                    this.operators(value);
+                    break;
+                case '=':
+                    // llamar a funcion para igual
+                    this.equals();
+                    break;
+                case 'AC':
+                    // llamar a funcion para AC
+                    this.clearAll();
+                    break;
+                case 'C':
+                    // llamar a funcion para C
+                    this.clearLast();
+                    break;
+                case '.':
+                    //llamar a funcion decimal
+                    this.decimal();
+                    break;
+                default:
+                    this.currentInput = "Error"
 
-			}
-		},
-
-
-        fff(value) {
-			if(Number(value) >= 0 && Number(value) <= 9 || value === '.') {
-                this.memory += this.memoryOp + value;
-                this.currentInput += value;
-            }
-
-            if(value==='+' || value==='-' || value==='*' || value==='/' || value==='%') {
-
-                this.op = value;
-                this.memoryOp = this.op;
-                //this.memory +=  this.memoryOp;
-                this.currentInput = this.op;
-
-            }
-
-            if (value==='='){
-                console.log("memoria al dar al igual: " +this.memory);
-                this.result = eval(this.memory).toString();
-
-                console.log("Memoria despues del eval: "+ this.memory);
-                console.log("Resultado: "+ this.result);
-                this.currentInput = this.result;
-            }
-            if (value==='AC'){
-                console.log("Se ha activado AC");
-                this.currentInput = '0';
-                this.memory = ' ';
-                this.result = ' ';
-                this.op = ' ';
-                this.memoryOp = ' ';
-            }
-            if(value==='C'){
-                console.log("Se ha activado C");
-
-                if(this.currentInput !== ''){
-                    this.currentInput = this.currentInput.slice(0, -1);
-                    this.memory = this.currentInput.slice(-1);
-                }
-                    this.currentInput = '0';
             }
         },
+        numbers(value) {
+            if (this.lastOperator) {
+
+                this.memory += this.op;
+                this.lastOperator = false;
+                this.currentInput = "";
+            }
+            this.currentInput += value;
+        },
+        operators(value) {
+            if (!this.lastOperator && this.currentInput !== "") {
+                this.memory += this.currentInput;
+                this.currentInput = "";
+            }
+            this.op = value;
+            this.lastOperator = true;
+            this.currentInput = value;
+        },
+        equals() {
+            if (!this.lastOperator) {
+                this.result = eval(this.memory + this.currentInput);
+                this.currentInput = this.result.toString();
+            }
+            this.memory = "";
+
+        },
+        clearAll() {
+            this.currentInput = "";
+            this.memory = "";
+            this.lastOperator = false;
+        },
+        clearLast() {
+            this.currentInput = this.currentInput.slice(0, -1);
+            this.currentInput = this.currentInput === "" ? "0" : this.currentInput;
+
+        },
+        decimal() {
+            this.currentInput += ".";
+        }
     }
 }
 
-
 </script>
-
-
 <style scoped>
 * {
     box-sizing: border-box;
@@ -207,4 +204,5 @@ span {
     padding: 15px;
     gap: 10px;
 }
+
 </style>
