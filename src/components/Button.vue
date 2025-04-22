@@ -40,6 +40,7 @@ button {
 }
 button:hover {
   background-color: rgba(204, 204, 204, 0.6);
+
 }
 .number {
   color: darkblue;
