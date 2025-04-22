@@ -1,6 +1,6 @@
 <template>
-  <button :class="type" @click="handleClick" >
-	  {{	buttons	}}
+  <button :class="buttonStyles" @click="handleClick" >
+	  {{buttons	}}
   </button>
 </template>
 
@@ -17,7 +17,28 @@ export default {
       type: String,
       default: 'number',
     }
-  }
+  },
+    computed: {
+      buttonStyles(){
+          switch(this.type){
+              case 'number':
+                  return 'bg-[#655f61] text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+              case 'operator':
+                  return 'bg-[#ff9501] text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+              case 'functionAC':
+                  return 'bg-[#655f61] text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+              case 'functionC':
+                  return 'bg-[#655f61] text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+              case 'equals':
+                  return 'bg-[#ff9501] text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+              case 'icons':
+                  return 'bg-[#655f61] text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+              case 'operator2':
+                  return 'bg-[#655f61] text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+          }
+
+      }
+    }
 }
 
 
@@ -26,7 +47,7 @@ export default {
 
 
 <style scoped>
-button {
+/*button {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -40,6 +61,12 @@ button {
 }
 button:hover {
   background-color: rgba(204, 204, 204, 0.6);
+
+}
+.icons{
+    font-size: 50px;
+    color: darkblue;
+    box-shadow: 3px 4px rgb(165, 163, 163);
 
 }
 .number {
@@ -69,10 +96,10 @@ button:hover {
 }
 
 .functionC {
-  width: 130px;
+
   font-weight: bold;
   background: red;
   color: whitesmoke;
   box-shadow: 3px 4px rgba(230, 91, 91, 0.6);
-}
+}*/
 </style>
