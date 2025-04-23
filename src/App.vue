@@ -1,9 +1,9 @@
 <template>
-    <div class="body">
-        <div class="container bg-[#413f40] flex flex-col justify-center items-center text-center gap-1.5 h-[500px] w-[300px] p-[15px] shadow-md"  >
+     <div class=" min-w-[100vw] w-full max-w-[100vw] bg-[#413f40] m-0 p-0 min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+        <div class="xl:w-[100vw] xl:h-[100vh] border-1 border-[#ffffff]/10 flex flex-col justify-center items-center text-center gap-1.5 h-[500px] w-[300px] p-[15px]"  >
 			<Display :name="currentInput"/>
 
-			<div class="grid grid-cols-4 gap-2.5 p-[15] border-0" >
+			<div class=" grid grid-cols-4 gap-2.5 p-[15] border-0 " >
 				<Button
 					v-for="(button, index) in buttonList"
 					:key="index"
@@ -13,8 +13,7 @@
 				/>
 			</div>
         </div>
-    </div>
-    <!-- <div class="text-xl bg-red-500">Hola Mundo</div>-->
+     </div>
  </template>
 
  <script>
@@ -42,7 +41,7 @@
              {value: '7', type: 'number'},
              {value: '8', type: 'number'},
              {value: '9', type: 'number'},
-             {value: 'x', type: 'operator'},
+             {value: '*', type: 'operator'},
              {value: '4', type: 'number'},
              {value: '5', type: 'number'},
              {value: '6', type: 'number'},
@@ -51,7 +50,7 @@
              {value: '2', type: 'number'},
              {value: '3', type: 'number'},
              {value: '+', type: 'operator'},
-             {value: '🖩', type: 'icons'},
+             {value: '', type: 'icons'},
              {value: '0', type: 'number'},
              {value: ',', type: 'number'},
              {value: '=', type: 'equals'},
@@ -75,7 +74,7 @@
                      break;
                  case '+':
                  case '-':
-                 case 'x':
+                 case '*':
                  case '/':
                  case '%':
                      // llamar a funcion para operadores
@@ -96,6 +95,9 @@
                  case ',':
                      //llamar a funcion decimal
                      this.decimal();
+                     break;
+                 case '':
+                     this.currentInput = "Calc.25";
                      break;
                  default:
                      this.currentInput = "Error"
@@ -146,11 +148,8 @@
 
  </script>
  <style scoped>
- * {
-     box-sizing: border-box;
- }
 
- .body {
+ /*.body {
      margin: 0;
      height: 100vh;
      display: flex;
@@ -159,7 +158,7 @@
      align-items: center;
      text-align: center;
 
- }
+ }*/
 
  /*.container {
      display: flex;
@@ -177,7 +176,7 @@
 
  }*/
 
- h1 {
+ /*h1 {
      color: darkblue;
      font-family: "Courier New", Courier, monospace;
      font-size: 30px;
@@ -192,7 +191,7 @@
      padding-top: 5px;
      align-self: flex-start;
 
- }
+ }*/
 
  /*.keyboard {
      display: grid;
