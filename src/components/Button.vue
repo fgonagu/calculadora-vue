@@ -38,19 +38,19 @@ export default {
         buttonStyles() {
             switch (this.type) {
                 case 'number':
-                    return 'bg-[#655f61] hover:bg-white hover:text-[#655f61] hover:scale-110 transition-transform text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+                    return 'bg-[#655f61] hover:bg-white hover:text-[#655f61] hover:scale-110 transition-transform text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px] cursor-pointer dark:bg-black/10 dark:border '
                 case 'operator':
-                    return 'bg-[#ff9501] hover:bg-yellow-300 hover:text-black hover:scale-110 transition-transform text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+                    return 'bg-[#ff9501] hover:bg-yellow-300 hover:text-black hover:scale-110 transition-transform text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px] cursor-pointer dark:bg-black/10 dark:border dark:border-[#FFFFFF] dark:text-[#ff9501]'
                 case 'functionAC':
-                    return 'bg-[#655f61] hover:bg-red-500 text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+                    return 'bg-[#655f61] hover:bg-red-500 text-white hover:scale-110 transition-transform rounded-full w-14 h-14 flex items-center justify-center text-[30px] cursor-pointer dark:bg-black/10 dark:border dark:border-[#FFFFFF] dark:text-[#FF0000] dark:hover:bg-red-200'
                 case 'functionC':
-                    return 'bg-[#655f61] hover:bg-red-500 text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+                    return 'bg-[#655f61] hover:bg-red-500 text-white hover:scale-110 transition-transform rounded-full w-14 h-14 flex items-center justify-center text-[30px] cursor-pointer dark:bg-black/10 dark:border dark:border-[#FFFFFF] dark:text-[#FF0000] dark:hover:bg-red-200'
                 case 'equals':
-                    return 'bg-[#ff9501]  hover:bg-yellow-300 hover:text-black hover:scale-110 transition-transform text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+                    return 'bg-[#ff9501]  hover:bg-yellow-300 hover:text-black hover:scale-110 transition-transform text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px] cursor-pointer dark:bg-black/10 dark:border dark:border-[#FFFFFF] dark:text-[#ff9501]'
                 case 'icons':
-                    return 'bg-[#655f61] hover:[transform:rotate(15deg)]  text-white rounded-full w-14 h-14 flex items-center justify-center text-[60px]'
+                    return 'stroke-yellow-600 bg-[#655f61] hover:[transform:rotate(15deg)]  text-white rounded-full w-14 h-14 flex items-center justify-center text-[60px] cursor-help dark:bg-black/10 dark:border dark:border-[#FFFFFF] dark:text-[#ff9501]'
                 case 'operator2':
-                    return 'bg-[#655f61]  hover:bg-yellow-300 hover:text-black hover:scale-110 transition-transform text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px]'
+                    return 'bg-[#655f61]  hover:bg-yellow-300 hover:text-black hover:scale-110 transition-transform text-white rounded-full w-14 h-14 flex items-center justify-center text-[30px] cursor-pointer dark:bg-black/10 dark:border dark:border-[#FFFFFF] dark:text-[#ff9501]'
             }
 
         }
@@ -59,7 +59,5 @@ export default {
 
 
 </script>
-
-
 <style scoped>
 </style>

@@ -1,2 +1,12 @@
 @import "tailwindcss";
 
+@layer tailwinds{
+    html{
+        background-color: rgba(65, 63, 64, 0.9);
+        background-image: url("binarioimagen7.png");
+        background-repeat: repeat;
+        height: 100%;
+
+
+    }
+}

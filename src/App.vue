@@ -1,9 +1,9 @@
 <template>
-     <div class=" min-w-[100vw] w-full max-w-[100vw] bg-[#413f40] m-0 p-0 min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
-        <div class="xl:w-[100vw] xl:h-[100vh] border-1 border-[#ffffff]/10 flex flex-col justify-center items-center text-center gap-1.5 h-[500px] w-[300px] p-[15px]"  >
+     <div class=" dark:bg-black/50  min-h-screen flex flex-col items-center justify-center text-center">
+        <div class="dark:bg-black/10 hover:scale-125   bg-black-opacity border-1  border-[#ffffff]/10 flex flex-col justify-center items-center text-center gap-1.5 h-[500px] w-[300px] p-[15px] hover:shadow-lg shadow-orange-400 backdrop-blur-[2px] "  >
 			<Display :name="currentInput"/>
 
-			<div class=" grid grid-cols-4 gap-2.5 p-[15] border-0 " >
+			<div class=" grid grid-cols-4 gap-2.5 p-[15] border-0  " >
 				<Button
 					v-for="(button, index) in buttonList"
 					:key="index"
@@ -131,13 +131,13 @@
 
          },
          clearAll() {
-             this.currentInput = "0";
+             this.currentInput = "";
              this.memory = "";
              this.lastOperator = false;
          },
          clearLast() {
              this.currentInput = this.currentInput.slice(0, -1);
-             this.currentInput = this.currentInput === "" ? "0" : this.currentInput;
+             this.currentInput = this.currentInput === "" ? "" : this.currentInput;
 
          },
          decimal() {
@@ -148,57 +148,5 @@
 
  </script>
  <style scoped>
-
- /*.body {
-     margin: 0;
-     height: 100vh;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     text-align: center;
-
- }*/
-
- /*.container {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     text-align: center;
-     gap: 5px;
-     height: 560px;
-     border: 4px solid darkblue;
-     background: lightblue;
-     border-radius: 10px;
-     padding: 15px;
-     box-shadow: 6px 4px rgba(128, 128, 128, 0.4);
-
- }*/
-
- /*h1 {
-     color: darkblue;
-     font-family: "Courier New", Courier, monospace;
-     font-size: 30px;
-     text-decoration: underline;
-
- }
-
- span {
-     display: flex;
-     color: rgba(128, 128, 128, 0.5);
-     padding-left: 15px;
-     padding-top: 5px;
-     align-self: flex-start;
-
- }*/
-
- /*.keyboard {
-     display: grid;
-     grid-template-columns: repeat(4, 60px);
-     border: 0;
-     padding: 15px;
-     gap: 10px;
- }*/
 
  </style>
